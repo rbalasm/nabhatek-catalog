@@ -1,0 +1,21 @@
+server:
+  port: 9001
+  tomcat:
+    connection-timeout: 2s
+    keep-alive-timeout: 15s
+    threads:
+      max: 50
+      min-spare: 5
+
+
+spring:
+  main:
+    banner-mode: console # valid values are console, log, off
+
+logging:
+  level:
+    root: INFO
+    org.springframework: INFO
+
+catalog:
+  greeting: Welcome to Nabhatek. Product catalog should be available soon!
