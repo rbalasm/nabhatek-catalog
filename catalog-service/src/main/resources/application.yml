@@ -11,6 +11,10 @@ server:
 spring:
   main:
     banner-mode: console # valid values are console, log, off
+  servlet:
+    multipart:
+      max-file-size: 10MB
+      max-request-size: 10MB
 
 logging:
   level:
@@ -19,3 +23,13 @@ logging:
 
 catalog:
   greeting: Welcome to Nabhatek. Product catalog should be available soon!
+
+aws:
+  accessKey: <accessKey>
+  secretKey: <secretKet>
+  region: us-west-1
+  bucket:
+    name: nabhatek-test-bucket
+
+
+  
