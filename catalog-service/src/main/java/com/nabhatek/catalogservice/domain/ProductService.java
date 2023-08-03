@@ -15,29 +15,34 @@ public class ProductService {
         return productRepository.findAll();
     }
 
-    public Product viewProductDetails(Integer id) {
+    public Product viewProductDetails(Long id) {
         return productRepository.findById(id).orElseThrow(() -> new ProductNotFoundException(id));
     }
 
     public Product addProduct(Product product) {
-        Optional<Product> byId = productRepository.findById(product.id());
-        if (byId.isPresent()) {
-            throw new ProductAlreadyExistsException(product.id());
+        if (product.id() != null) {
+            Optional<Product> byId = productRepository.findById(product.id());
+            if (byId.isPresent()) {
+                throw new ProductAlreadyExistsException(product.id());
+            }
         }
         return productRepository.save(product);
     }
 
-    public void deleteProduct(Integer id) {
+    public void deleteProduct(Long id) {
         productRepository.deleteById(id);
     }
 
-    public Product editProduct(Integer id, Product product) {
+    public Product editProduct(Long id, Product product) {
         return productRepository.findById(id)
                 .map(existingProduct -> {
                     var productToUpdate = new Product(
                             existingProduct.id(),
                             product.description(),
-                            product.price()
+                            product.price(),
+                            existingProduct.createdDate(),
+                            existingProduct.lastModifiedDate(),
+                            existingProduct.version()
                     );
                     return productRepository.save(productToUpdate);
                 })

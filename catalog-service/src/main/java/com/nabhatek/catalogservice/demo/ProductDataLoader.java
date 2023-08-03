@@ -7,6 +7,9 @@ import org.springframework.context.annotation.Profile;
 import org.springframework.context.event.EventListener;
 import org.springframework.stereotype.Component;
 
+import java.time.Instant;
+import java.util.List;
+
 @Component
 @Profile("testdata")
 public class ProductDataLoader {
@@ -18,9 +21,10 @@ public class ProductDataLoader {
 
     @EventListener(ApplicationReadyEvent.class)
     public void loadProductTestData() {
-        var product1 = new Product(4713, "Ginger Mango Chutney", 2.99);
-        var product2 = new Product(4717, "Mixed Pickle", 5.99);
-        productRepository.save(product1);
-        productRepository.save(product2);
+        productRepository.deleteAll();
+        Instant now = Instant.now();
+        var product1 = Product.of("Ginger Mango Chutney", 2.99);
+        var product2 = Product.of("Mixed Pickle", 5.99);
+        productRepository.saveAll(List.of(product1, product2));
     }
 }

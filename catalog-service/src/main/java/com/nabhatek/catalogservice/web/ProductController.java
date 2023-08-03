@@ -22,7 +22,7 @@ public class ProductController {
     }
 
     @GetMapping("{id}")
-    public Product getById(@PathVariable Integer id) {
+    public Product getById(@PathVariable Long id) {
         return productService.viewProductDetails(id);
     }
 
@@ -34,12 +34,12 @@ public class ProductController {
 
     @DeleteMapping("{id}")
     @ResponseStatus(HttpStatus.NO_CONTENT)
-    public void delete(@PathVariable Integer id) {
+    public void delete(@PathVariable Long id) {
         productService.deleteProduct(id);
     }
 
     @PutMapping("{id}")
-    public Product put(@PathVariable Integer id, @Valid @RequestBody Product product) {
+    public Product put(@PathVariable Long id, @Valid @RequestBody Product product) {
         return productService.editProduct(id, product);
     }
 }

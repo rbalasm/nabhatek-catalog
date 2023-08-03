@@ -15,6 +15,13 @@ spring:
     multipart:
       max-file-size: 10MB
       max-request-size: 10MB
+  datasource:
+    username: postgres
+    password: postgres
+    url: jdbc:postgresql://localhost:5432/nt_catalog
+    hikari:
+      connection-timeout: 2000
+      maximum-pool-size: 5
 
 logging:
   level:

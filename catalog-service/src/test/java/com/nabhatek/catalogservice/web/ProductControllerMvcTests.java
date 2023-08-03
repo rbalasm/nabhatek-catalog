@@ -22,7 +22,7 @@ public class ProductControllerMvcTests {
 
     @Test
     void testInvalidProduct() throws Exception {
-        given(productService.viewProductDetails(1111)).willThrow(ProductNotFoundException.class);
+        given(productService.viewProductDetails(1111L)).willThrow(ProductNotFoundException.class);
         mockMvc.perform(get("/products/1111")).andExpect(status().isNotFound());
     }
 }
